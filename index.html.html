@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CareerBuildJobs | Find Your Next Career</title>
+<meta name="description" content="CareerBuildJobs helps people find career opportunities and jobs in South Africa.">
+<meta name="robots" content="index, follow">
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#2b3854;
+}
+
+header{
+    background:#102a43;
+    color:white;
+    padding:16px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#f7c948;
+}
+
+nav{
+    display:flex;
+    gap:6px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+nav button{
+    border:0;
+    background:transparent;
+    color:white;
+    padding:9px 12px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+nav button:hover{
+    color:#f7c948;
+}
+
+.btn{
+    border:0;
+    border-radius:8px;
+    padding:12px 18px;
+    cursor:pointer;
+    font-weight:bold;
+    background:#f7c948;
+    color:#102a43;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+.blue{
+    background:#102a43;
+    color:white;
+}
+
+.red{
+    background:#d64545;
+    color:white;
+}
+
+.green{
+    background:#2e8b57;
+    color:white;
+}
+
+.hero{
+    background:linear-gradient(135deg,#102a43,#1d5278);
+    color:white;
+    padding:75px 6%;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:44px;
+    margin-bottom:15px;
+}
+
+.hero h1 span{
+    color:#f7c948;
+}
+
+.hero p{
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+.search{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:12px;
+    border-radius:12px;
+    display:flex;
+    gap:10px;
+}
+
+.search input,
+.search select{
+    flex:1;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    outline:none;
+}
+
+.container{
+    width:88%;
+    max-width:1200px;
+    margin:40px auto;
+}
+
+.section-title{
+    margin-bottom:20px;
+}
+
+.jobs{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.job{
+    background:white;
+    border-radius:12px;
+    padding:22px;
+    box-shadow:0 3px 15px rgba(0,0,0,.07);
+}
+
+.job h3{
+    color:#102a43;
+    margin-bottom:8px;
+}
+
+.company{
+    color:#555;
+    margin-bottom:12px;
+}
+
+.info{
+    font-size:14px;
+    margin:7px 0;
+}
+
+.tag{
+    display:inline-block;
+    background:#edf2f7;
+    padding:6px 9px;
+    border-radius:20px;
+    font-size:12px;
+    margin:4px 2px;
+}
+
+.actions{
+    display:flex;
+    gap:8px;
+    margin-top:17px;
+}
+
+.actions button{
+    flex:1;
+}
+
+.dashboard{
+    display:none;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:white;
+    padding:25px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.stat h2{
+    font-size:30px;
+    color:#102a43;
+}
+
+.panel{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    margin-bottom:25px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:7px;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+.empty{
+    background:#f7f9fc;
+    padding:25px;
+    border-radius:8px;
+    color:#666;
+    text-align:center;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:500;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.modal-box{
+    width:100%;
+    max-width:450px;
+    background:white;
+    padding:30px;
+    border-radius:14px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.modal-box h2{
+    margin-bottom:20px;
+    color:#102a43;
+}
+
+.modal-box input,
+.modal-box select{
+    margin-bottom:14px;
+}
+
+.modal-box .btn{
+    width:100%;
+}
+
+.switch{
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
+}
+
+.switch a{
+    color:#102a43;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.admin-title{
+    color:#d64545;
+}
+
+footer{
+    background:#102a43;
+    color:white;
+    padding:35px 6%;
+    text-align:center;
+    margin-top:60px;
+}
+
+@media(max-width:700px){
+
+    header{
+        flex-direction:column;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .search{
+        flex-direction:column;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    nav{
+        justify-content:center;
+    }
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+    CareerBuild<span>Jobs</span>
+</div>
+
+<nav>
+
+<button onclick="showHome()">Home</button>
+
+<button onclick="showJobs()">Find Jobs</button>
+
+<button id="dashboardBtn" class="hidden"
+onclick="showDashboard()">Dashboard</button>
+
+<button id="loginBtn"
+onclick="openLogin()">Login</button>
+
+<button id="signupBtn"
+onclick="openSignup()">Sign Up</button>
+
+<button id="logoutBtn"
+class="hidden"
+onclick="logout()">Logout</button>
+
+</nav>
+
+</header>
+
+
+<!-- HOME -->
+
+<section id="home">
+
+<div class="hero">
+
+<h1>
+Build Your <span>Career</span>
+</h1>
+
+<p>
+Find jobs and opportunities in South Africa.
+</p>
+
+<div class="search">
+
+<input
+id="homeSearch"
+placeholder="Job title, company or keyword">
+
+<input
+id="homeLocation"
+placeholder="Location">
+
+<button class="btn"
+onclick="searchJobs()">
+Search Jobs
+</button>
+
+</div>
+
+</div>
+
+
+<div class="container">
+
+<h2 class="section-title">
+Latest Jobs
+</h2>
+
+<div id="homeJobs" class="jobs"></div>
+
+</div>
+
+</section>
+
+
+<!-- JOBS -->
+
+<section id="jobsSection" class="hidden">
+
+<div class="container">
+
+<h1 class="section-title">
+Find Jobs
+</h1>
+
+<div class="search">
+
+<input
+id="jobSearch"
+placeholder="Search jobs..."
+oninput="displayJobs()">
+
+<input
+id="locationSearch"
+placeholder="Location..."
+oninput="displayJobs()">
+
+<select id="categorySearch"
+onchange="displayJobs()">
+
+<option value="">All Categories</option>
+<option>IT</option>
+<option>Administration</option>
+<option>Finance</option>
+<option>Marketing</option>
+<option>Sales</option>
+<option>Customer Service</option>
+<option>Graduate</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+<br>
+
+<div id="jobsList" class="jobs"></div>
+
+</div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboardSection" class="dashboard">
+
+<div class="container">
+
+<h1>
+My Dashboard
+</h1>
+
+<br>
+
+<div id="welcome"></div>
+
+<br>
+
+<div class="cards">
+
+<div class="stat">
+
+<h2 id="savedCount">0</h2>
+
+<p>Saved Jobs</p>
+
+</div>
+
+<div class="stat">
+
+<h2 id="applicationCount">0</h2>
+
+<p>Applications</p>
+
+</div>
+
+<div class="stat">
+
+<h2 id="jobCount">0</h2>
+
+<p>Jobs Available</p>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2> Saved Jobs</h2>
+
+<br>
+
+<div id="savedJobs"></div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>📩 My Applications</h2>
+
+<br>
+
+<div id="applications"></div>
+
+</div>
+
+
+<!-- ADMIN AREA -->
+
+<div id="adminArea" class="hidden">
+
+<div class="panel">
+
+<h2 class="admin-title">
+🔐 Administrator Dashboard
+</h2>
+
+<p>
+Only the administrator can add and manage jobs.
+</p>
+
+<br>
+
+<form id="jobForm">
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Job Title</label>
+
+<input
+id="jobTitle"
+required
+placeholder="e.g. IT Support Intern">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Company</label>
+
+<input
+id="jobCompany"
+required
+placeholder="Company name">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Location</label>
+
+<input
+id="jobLocation"
+required
+placeholder="Johannesburg, Gauteng">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Employment Type</label>
+
+<select id="jobType">
+
+<option>Full-time</option>
+<option>Part-time</option>
+<option>Contract</option>
+<option>Internship</option>
+<option>Temporary</option>
+<option>Remote</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Salary</label>
+
+<input
+id="jobSalary"
+placeholder="e.g. R8,000 - R12,000">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Category</label>
+
+<select id="jobCategory">
+
+<option>IT</option>
+<option>Administration</option>
+<option>Finance</option>
+<option>Marketing</option>
+<option>Sales</option>
+<option>Customer Service</option>
+<option>Graduate</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Job Description</label>
+
+<textarea
+id="jobDescription"
+required
+placeholder="Describe the job..."></textarea>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Requirements</label>
+
+<textarea
+id="jobRequirements"
+placeholder="List the requirements..."></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Closing Date</label>
+
+<input
+type="date"
+id="jobClosing">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Original Application Link</label>
+
+<input
+type="url"
+id="jobLink"
+required
+placeholder="https://company.com/apply">
+
+</div>
+
+</div>
+
+<button
+type="submit"
+class="btn blue">
+
+➕ Publish Job
+
+</button>
+
+</form>
+
+</div>
+
+
+<div class="panel">
+
+<h2>📋 Manage Jobs</h2>
+
+<br>
+
+<div id="manageJobs"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<h2>CareerBuildJobs 🇿🇦</h2>
+
+<br>
+
+<p>
+Connecting people with career opportunities.
+</p>
+
+<br>
+
+<p>
+© 2026 CareerBuildJobs
+</p>
+
+</footer>
+
+
+<!-- LOGIN -->
+
+<div class="modal" id="loginModal">
+
+<div class="modal-box">
+
+<span class="close"
+onclick="closeModals()">×</span>
+
+<h2>Login</h2>
+
+<form id="loginForm">
+
+<input
+type="email"
+id="loginEmail"
+placeholder="Email"
+required>
+
+<input
+type="password"
+id="loginPassword"
+placeholder="Password"
+required>
+
+<button class="btn blue">
+Login
+</button>
+
+</form>
+
+<div class="switch">
+
+Don't have an account?
+
+<a onclick="switchSignup()">
+Sign Up
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SIGNUP -->
+
+<div class="modal" id="signupModal">
+
+<div class="modal-box">
+
+<span class="close"
+onclick="closeModals()">×</span>
+
+<h2>Create Account</h2>
+
+<form id="signupForm">
+
+<input
+id="signupName"
+placeholder="Full name"
+required>
+
+<input
+type="email"
+id="signupEmail"
+placeholder="Email"
+required>
+
+<input
+type="password"
+id="signupPassword"
+placeholder="Password"
+required>
+
+<button class="btn blue">
+Create Account
+</button>
+
+</form>
+
+<div class="switch">
+
+Already have an account?
+
+<a onclick="switchLogin()">
+Login
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ADMIN LOGIN -->
+
+<div class="modal" id="adminModal">
+
+<div class="modal-box">
+
+<span class="close"
+onclick="closeModals()">×</span>
+
+<h2>🔐 Admin Login</h2>
+
+<p>
+Administrator access only.
+</p>
+
+<br>
+
+<form id="adminForm">
+
+<input
+type="email"
+id="adminEmail"
+placeholder="Admin email"
+required>
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Admin password"
+required>
+
+<button class="btn blue">
+Admin Login
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+
+<script>
+
+const supabaseClient = supabase.createClient(
+"https://gexxgntmaydeftetlhhv.supabase.co",
+"sb_publishable_uwBthGsXbNbHgClWb0X0Hw_piIR-y9-"
+);
+
+/* =====================================
+   CAREERBUILDJOBS
+   ===================================== */
+
+
+let jobs = [];
+
+
+/* USERS */
+
+let users =
+JSON.parse(localStorage.getItem("careerBuildUsers")) || [];
+
+
+/* CURRENT USER */
+
+let currentUser =
+localStorage.getItem("careerBuildCurrentUser");
+
+let isAdmin = false;
+
+
+/* =====================================
+   SAVE DATA
+   ===================================== */
+
+async function loadJobs(){
+
+let result =
+await supabaseClient
+.from("jobs")
+.select("*")
+.eq("published",true)
+.order("created_at",{ascending:false});
+
+if(result.error){
+throw result.error;
+}
+
+jobs = result.data.map(job => ({
+...job,
+closingDate:job.closing_date,
+link:job.application_link
+}));
+renderHomeJobs();
+displayJobs();
+
+}
+
+
+async function checkAdminSession(){
+
+let result =
+await supabaseClient.auth.getSession();
+
+let session = result.data.session;
+isAdmin = session?.user?.email === "sescilo@icloud.com";
+
+if(isAdmin){
+currentUser = "admin";
+}
+
+updateNav();
+
+}
+
+
+function saveUsers(){
+
+localStorage.setItem(
+"careerBuildUsers",
+JSON.stringify(users)
+);
+
+}
+
+
+/* =====================================
+   NAVIGATION
+   ===================================== */
+
+function hideSections(){
+
+document.getElementById("home")
+.classList.add("hidden");
+
+document.getElementById("jobsSection")
+.classList.add("hidden");
+
+document.getElementById("dashboardSection")
+.style.display="none";
+
+}
+
+
+function showHome(){
+
+hideSections();
+
+document.getElementById("home")
+.classList.remove("hidden");
+
+renderHomeJobs();
+
+}
+
+
+function showJobs(){
+
+hideSections();
+
+document.getElementById("jobsSection")
+.classList.remove("hidden");
+
+displayJobs();
+
+}
+
+
+function showDashboard(){
+
+if(!currentUser && !isAdmin){
+
+openLogin();
+
+return;
+
+}
+
+hideSections();
+
+document.getElementById("dashboardSection")
+.style.display="block";
+
+updateDashboard();
+
+}
+
+
+/* =====================================
+   JOB CARDS
+   ===================================== */
+
+function jobCard(job){
+
+return `
+
+<div class="job">
+
+<h3>${escapeHTML(job.title)}</h3>
+
+<p class="company">
+${escapeHTML(job.company)}
+</p>
+
+<p class="info">
+📍 ${escapeHTML(job.location)}
+</p>
+
+<p class="info">
+💼 ${escapeHTML(job.type)}
+</p>
+
+<p class="info">
+💰 ${escapeHTML(job.salary || "Salary not specified")}
+</p>
+
+<span class="tag">
+${escapeHTML(job.category)}
+</span>
+
+${job.closingDate ? `
+<span class="tag">
+Closing: ${escapeHTML(job.closingDate)}
+</span>
+` : ""}
+
+<div class="actions">
+
+<button
+class="btn blue"
+onclick="applyJob(${job.id})">
+Apply
+</button>
+
+<button
+class="btn"
+onclick="saveJob(${job.id})">
+ Save
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* BASIC HTML PROTECTION */
+
+function escapeHTML(value){
+
+return String(value || "")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================
+   HOME JOBS
+   ===================================== */
+
+function renderHomeJobs(){
+
+let box =
+document.getElementById("homeJobs");
+
+if(jobs.length===0){
+
+box.innerHTML=`
+
+<div class="empty">
+
+<h3>No jobs have been posted yet.</h3>
+
+<p>
+New opportunities will appear here when they are added.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+box.innerHTML =
+jobs.slice(0,6)
+.map(jobCard)
+.join("");
+
+}
+
+
+/* =====================================
+   SEARCH
+   ===================================== */
+
+function searchJobs(){
+
+document.getElementById("jobSearch")
+.value =
+document.getElementById("homeSearch")
+.value;
+
+document.getElementById("locationSearch")
+.value =
+document.getElementById("homeLocation")
+.value;
+
+showJobs();
+
+}
+
+
+function displayJobs(){
+
+let search =
+(document.getElementById("jobSearch")?.value || "")
+.toLowerCase();
+
+let location =
+(document.getElementById("locationSearch")?.value || "")
+.toLowerCase();
+
+let category =
+document.getElementById("categorySearch")?.value || "";
+
+
+let filtered =
+jobs.filter(job => {
+
+let searchMatch =
+job.title.toLowerCase().includes(search) ||
+job.company.toLowerCase().includes(search) ||
+job.category.toLowerCase().includes(search);
+
+let locationMatch =
+job.location.toLowerCase().includes(location);
+
+let categoryMatch =
+!category ||
+job.category === category;
+
+return searchMatch &&
+locationMatch &&
+categoryMatch;
+
+});
+
+
+let box =
+document.getElementById("jobsList");
+
+
+if(filtered.length===0){
+
+box.innerHTML=`
+
+<div class="empty">
+
+<h3>No jobs found.</h3>
+
+<p>
+Try another search.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+box.innerHTML =
+filtered.map(jobCard).join("");
+
+}
+
+
+/* =====================================
+   SAVE JOB
+   ===================================== */
+
+function saveJob(id){
+
+if(!currentUser){
+
+alert("Please login first.");
+
+openLogin();
+
+return;
+
+}
+
+
+if(isAdmin){
+
+alert("Admin accounts cannot save jobs.");
+
+return;
+
+}
+
+
+let user =
+users.find(u =>
+u.email===currentUser
+);
+
+
+if(!user.saved){
+
+user.saved=[];
+
+}
+
+
+if(user.saved.includes(id)){
+
+alert("Job already saved.");
+
+return;
+
+}
+
+
+user.saved.push(id);
+
+saveUsers();
+
+alert("Job saved ❤️");
+
+updateDashboard();
+
+}
+
+
+/* =====================================
+   APPLY
+   ===================================== */
+
+function applyJob(id){
+
+if(!currentUser){
+
+alert("Please login before applying.");
+
+openLogin();
+
+return;
+
+}
+
+
+if(isAdmin){
+
+alert("Please use a job seeker account to apply.");
+
+return;
+
+}
+
+
+let user =
+users.find(u =>
+u.email===currentUser
+);
+
+
+let job =
+jobs.find(j =>
+j.id===id
+);
+
+
+if(!user.applications){
+
+user.applications=[];
+
+}
+
+
+if(!user.applications.includes(id)){
+
+user.applications.push(id);
+
+saveUsers();
+
+alert(
+"Application recorded. You will now be taken to the original application page."
+);
+
+}else{
+
+alert(
+"You have already recorded an application for this job."
+);
+
+}
+
+
+if(job.link){
+
+window.open(
+job.link,
+"_blank"
+);
+
+}
+
+
+updateDashboard();
+
+}
+
+
+/* =====================================
+   SIGN UP
+   ===================================== */
+
+document.getElementById("signupForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+
+let name =
+document.getElementById("signupName")
+.value.trim();
+
+let email =
+document.getElementById("signupEmail")
+.value.trim()
+.toLowerCase();
+
+let password =
+document.getElementById("signupPassword")
+.value;
+
+
+if(password.length<6){
+
+alert(
+"Password must be at least 6 characters."
+);
+
+return;
+
+}
+
+
+if(
+users.some(u =>
+u.email===email
+)
+){
+
+alert(
+"An account with this email already exists."
+);
+
+return;
+
+}
+
+
+users.push({
+
+name:name,
+
+email:email,
+
+password:password,
+
+saved:[],
+
+applications:[]
+
+});
+
+
+saveUsers();
+
+alert(
+"Account created successfully."
+);
+
+closeModals();
+
+openLogin();
+
+});
+
+
+/* =====================================
+   USER LOGIN
+   ===================================== */
+
+document.getElementById("loginForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+
+let email =
+document.getElementById("loginEmail")
+.value.trim()
+.toLowerCase();
+
+let password =
+document.getElementById("loginPassword")
+.value;
+
+
+let user =
+users.find(u =>
+u.email===email &&
+u.password===password
+);
+
+
+if(!user){
+
+alert(
+"Incorrect email or password."
+);
+
+return;
+
+}
+
+
+currentUser=email;
+
+localStorage.setItem(
+"careerBuildCurrentUser",
+email
+);
+
+
+closeModals();
+
+updateNav();
+
+showDashboard();
+
+});
+
+
+/* =====================================
+   ADMIN LOGIN
+   ===================================== */
+
+document.getElementById("adminForm")
+.addEventListener("submit",async function(e){
+
+e.preventDefault();
+
+
+let email =
+document.getElementById("adminEmail")
+.value.trim()
+.toLowerCase();
+
+let password =
+document.getElementById("adminPassword")
+.value;
+
+
+let result =
+await supabaseClient.auth.signInWithPassword({
+email:email,
+password:password
+});
+
+if(result.error){
+
+alert(
+"Incorrect administrator login."
+);
+
+return;
+
+}
+
+
+isAdmin=true;
+currentUser="admin";
+
+
+closeModals();
+
+updateNav();
+
+showDashboard();
+
+});
+
+
+/* =====================================
+   LOGOUT
+   ===================================== */
+
+async function logout(){
+
+if(isAdmin){
+await supabaseClient.auth.signOut();
+isAdmin=false;
+}
+
+localStorage.removeItem(
+"careerBuildCurrentUser"
+);
+
+currentUser=null;
+
+updateNav();
+
+showHome();
+
+}
+
+
+/* =====================================
+   NAV UPDATE
+   ===================================== */
+
+function updateNav(){
+
+let logged =
+!!currentUser;
+
+
+document.getElementById("loginBtn")
+.classList.toggle(
+"hidden",
+logged
+);
+
+
+document.getElementById("signupBtn")
+.classList.toggle(
+"hidden",
+logged
+);
+
+
+document.getElementById("logoutBtn")
+.classList.toggle(
+"hidden",
+!logged
+);
+
+
+document.getElementById("dashboardBtn")
+.classList.toggle(
+"hidden",
+!logged
+);
+
+
+}
+
+
+/* =====================================
+   DASHBOARD
+   ===================================== */
+
+function updateDashboard(){
+
+if(!currentUser) return;
+
+
+let adminArea =
+document.getElementById("adminArea");
+
+
+if(isAdmin){
+
+adminArea.classList.remove("hidden");
+
+document.getElementById("welcome")
+.innerHTML=`
+<h3>
+Welcome, Administrator 🔐
+</h3>
+<p>
+You can manage CareerBuildJobs from this dashboard.
+</p>
+`;
+
+}else{
+
+adminArea.classList.add("hidden");
+
+
+let user =
+users.find(u =>
+u.email===currentUser
+);
+
+
+document.getElementById("welcome")
+.innerHTML=`
+
+<h3>
+Welcome, ${escapeHTML(user.name)} 👋
+</h3>
+
+<p>
+${escapeHTML(user.email)}
+</p>
+
+`;
+
+}
+
+
+let user =
+users.find(u =>
+u.email===currentUser
+);
+
+
+let saved =
+isAdmin ? [] : (user.saved || []);
+
+let applications =
+isAdmin ? [] : (user.applications || []);
+
+
+document.getElementById("savedCount")
+.textContent=saved.length;
+
+
+document.getElementById("applicationCount")
+.textContent=applications.length;
+
+
+document.getElementById("jobCount")
+.textContent=jobs.length;
+
+
+/* SAVED */
+
+let savedBox =
+document.getElementById("savedJobs");
+
+
+if(saved.length===0){
+
+savedBox.innerHTML=`
+
+<div class="empty">
+No saved jobs yet.
+</div>
+
+`;
+
+}else{
+
+savedBox.innerHTML =
+saved
+.map(id =>
+jobs.find(j=>j.id===id)
+)
+.filter(Boolean)
+.map(jobCard)
+.join("");
+
+}
+
+
+/* APPLICATIONS */
+
+let applicationBox =
+document.getElementById("applications");
+
+
+if(applications.length===0){
+
+applicationBox.innerHTML=`
+
+<div class="empty">
+No applications recorded yet.
+</div>
+
+`;
+
+}else{
+
+applicationBox.innerHTML =
+applications
+.map(id =>
+jobs.find(j=>j.id===id)
+)
+.filter(Boolean)
+.map(job=>`
+
+<div class="job">
+
+<h3>
+${escapeHTML(job.title)}
+</h3>
+
+<p>
+${escapeHTML(job.company)}
+</p>
+
+<br>
+
+<span class="tag">
+Application recorded
+</span>
+
+</div>
+
+`)
+.join("");
+
+}
+
+
+if(isAdmin){
+
+renderManageJobs();
+
+}
+
+}
+
+
+/* =====================================
+   ADD JOB
+   ===================================== */
+
+document.getElementById("jobForm")
+.addEventListener("submit",async function(e){
+
+e.preventDefault();
+
+
+if(!isAdmin){
+
+alert("Administrator access required.");
+
+return;
+
+}
+
+
+let job={
+
+id:Date.now(),
+
+title:
+document.getElementById("jobTitle").value.trim(),
+
+company:
+document.getElementById("jobCompany").value.trim(),
+
+location:
+document.getElementById("jobLocation").value.trim(),
+
+type:
+document.getElementById("jobType").value,
+
+salary:
+document.getElementById("jobSalary").value.trim(),
+
+category:
+document.getElementById("jobCategory").value,
+
+description:
+document.getElementById("jobDescription").value.trim(),
+
+requirements:
+document.getElementById("jobRequirements").value.trim(),
+
+closingDate:
+document.getElementById("jobClosing").value,
+
+link:
+document.getElementById("jobLink").value.trim(),
+
+published:true
+
+};
+
+
+let result =
+await supabaseClient
+.from("jobs")
+.insert({
+title:job.title,
+company:job.company,
+location:job.location,
+type:job.type,
+salary:job.salary,
+category:job.category,
+description:job.description,
+requirements:job.requirements,
+closing_date:job.closingDate || null,
+application_link:job.link,
+published:true
+});
+
+if(result.error){
+alert("The job could not be published.");
+return;
+}
+
+await loadJobs();
+
+document.getElementById("jobForm").reset();
+
+alert(
+"Job published successfully! 🎉"
+);
+
+updateDashboard();
+
+});
+
+
+/* =====================================
+   ADMIN JOB MANAGEMENT
+   ===================================== */
+
+function renderManageJobs(){
+
+let box =
+document.getElementById("manageJobs");
+
+
+if(jobs.length===0){
+
+box.innerHTML=`
+
+<div class="empty">
+You have not added any jobs yet.
+</div>
+
+`;
+
+return;
+
+}
+
+
+box.innerHTML =
+jobs.map(job=>`
+
+<div class="job">
+
+<h3>
+${escapeHTML(job.title)}
+</h3>
+
+<p>
+${escapeHTML(job.company)}
+</p>
+
+<p>
+📍 ${escapeHTML(job.location)}
+</p>
+
+<br>
+
+<button
+class="btn red"
+onclick="deleteJob(${job.id})">
+
+Delete
+
+</button>
+
+</div>
+
+<br>
+
+`).join("");
+
+}
+
+
+async function deleteJob(id){
+
+if(
+!confirm(
+"Are you sure you want to delete this job?"
+)
+)return;
+
+
+let result =
+await supabaseClient
+.from("jobs")
+.delete()
+.eq("id",id);
+
+if(result.error){
+alert("The job could not be deleted.");
+return;
+}
+
+await loadJobs();
+
+updateDashboard();
+
+}
+
+
+/* =====================================
+   MODALS
+   ===================================== */
+
+function openLogin(){
+
+closeModals();
+
+document.getElementById("loginModal")
+.style.display="flex";
+
+}
+
+
+function openSignup(){
+
+closeModals();
+
+document.getElementById("signupModal")
+.style.display="flex";
+
+}
+
+
+function openAdminLogin(){
+
+closeModals();
+
+document.getElementById("adminModal")
+.style.display="flex";
+
+}
+
+
+document.addEventListener("keydown",function(e){
+
+if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==="a"){
+
+e.preventDefault();
+openAdminLogin();
+
+}
+
+});
+
+
+function closeModals(){
+
+document.getElementById("loginModal")
+.style.display="none";
+
+document.getElementById("signupModal")
+.style.display="none";
+
+document.getElementById("adminModal")
+.style.display="none";
+
+}
+
+
+function switchSignup(){
+
+closeModals();
+
+openSignup();
+
+}
+
+
+function switchLogin(){
+
+closeModals();
+
+openLogin();
+
+}
+
+
+/* =====================================
+   START
+   ===================================== */
+
+updateNav();
+
+loadJobs().catch(function(){
+alert("Could not connect to the website server.");
+});
+
+checkAdminSession();
+
+</script>
+
+</body>
+</html>
